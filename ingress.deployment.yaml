@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: gin-pod
+spec:
+    selector:
+      matchLabels:
+        app: gin-pod
+    replicas: 2   #有n個 Pod 運行 gin-pod
+    template:
+      metadata:
+        labels: 
+          app: gin-pod
+      spec:
+        containers:
+        - name: gin-containers-name
+          image: asdfnmb24040/gin-server
+          ports:
+          - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: redis-pod
+spec:
+    selector:
+        matchLabels:
+          app: redis-pod
+    replicas: 1   #n個 Pod 運行 redis-pod
+    template:
+      metadata:
+        labels: 
+          app: redis-pod
+      spec:
+        containers:
+        - name: redis-containers-name
+          image: asdfnmb24040/redis-server 
+          ports:
+          - containerPort: 6379

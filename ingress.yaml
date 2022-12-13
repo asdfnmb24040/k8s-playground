@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress #<=== 指定物件種類為 Ingress
+metadata:
+  name: web
+spec:
+  ingressClassName: gin-class-name
+  rules:
+    - host: a.gin.com #<=== 指定 host
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: gin-service #<=== 綁定Service
+                port:
+                  number: 8080
+    # - host: b.gin.com #<=== 指定 host
+    #   http:
+    #     paths:
+    #       - path: /
+    #         pathType: Prefix
+    #         backend:
+    #           service:
+    #             name: redis-service #<=== 綁定Service
+    #             port:
+    #               number: 6379

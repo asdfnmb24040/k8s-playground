@@ -1,0 +1,29 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gin-service
+spec:
+  # type: NodePort
+  selector:
+    app: gin-pod   #<=== 綁定標記為 gin-pod 的 Pod
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      name: http
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-service
+spec:
+  # type: NodePort
+  selector:
+    app: redis-pod   #<=== 綁定標記為 redis-pod 的 Pod
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 6379
+      name: http
